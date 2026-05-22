@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 
-# Fix strict pour l'erreur Apache MPM
-RUN a2dismod mpm_event && a2enmod mpm_prefork
+# Supprimer directement le fichier de configuration de mpm_event pour de bon
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_event.conf \
+    && a2enmod mpm_prefork
 
 # Installer les extensions PDO et MySQL
 RUN docker-php-ext-install pdo pdo_mysql mysqli
