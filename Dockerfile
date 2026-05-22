@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Fix pour l'erreur Apache MPM
+# Fix strict pour l'erreur Apache MPM
 RUN a2dismod mpm_event && a2enmod mpm_prefork
 
 # Installer les extensions PDO et MySQL
@@ -13,8 +13,3 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
-
-
-
-
-
